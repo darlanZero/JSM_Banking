@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormField, FormLabel, FormControl, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
+import { CustomInputProps } from '@/types'
 
 const CustomInput = ({control, name, type, placeholder, className}: CustomInputProps) => {
   return (

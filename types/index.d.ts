@@ -1,5 +1,9 @@
 /* eslint-disable no-unused-vars */
 
+import { authFormSchema } from "@/lib/utils";
+import { Control } from "react-hook-form";
+import { z } from "zod";
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -192,7 +196,7 @@ declare interface AuthFormProps {
 }
 
 declare interface CustomInputProps {
-  control: any;
+  control:any;
   name: string;
   type: React.HTMLInputTypeAttribute | undefined;
   placeholder?: string;
