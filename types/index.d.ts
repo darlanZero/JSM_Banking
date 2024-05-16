@@ -191,6 +191,14 @@ declare interface AuthFormProps {
   type: "sign-in" | "sign-up";
 }
 
+declare interface CustomInputProps {
+  control: any;
+  name: string;
+  type: React.HTMLInputTypeAttribute | undefined;
+  placeholder?: string;
+  className: string;
+}
+
 declare interface BankDropdownProps {
   accounts: Account[];
   setValue?: UseFormSetValue<any>;

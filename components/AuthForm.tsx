@@ -18,13 +18,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import CustomInput from './Dynamic/CustomInput'
 
 const formSchema = z.object({
-    username: z.string().min(2, {
-        message: 'Username must be at least 2 characters',
-    }).max(50, {
-        message: 'Username is too long',
-    }),
+    email: z.string().email(),
+    password: z.string().min(6, { message: "Password must be 6 characters or more" }),
 })
 
 const AuthForm = ({type}:{type:string}) => {
@@ -35,7 +33,8 @@ const AuthForm = ({type}:{type:string}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
     },
   })
  
@@ -92,26 +91,21 @@ const AuthForm = ({type}:{type:string}) => {
             <>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                        <FormField
-                        control={form.control}
-                        name="username"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>
-                                    Username
-                                </FormLabel>
+                        
+                        <CustomInput 
+                            control={form.control}
+                            name='email'
+                            type='email'
+                            placeholder='Enter your email'
+                            className='input-class'
+                        />
 
-                                <FormControl>
-                                    <Input placeholder="shadcn" {...field} />
-                                </FormControl>
-
-                                <FormDescription>
-                                    This is your public display name.
-                                </FormDescription>
-
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        <CustomInput 
+                            control={form.control}
+                            name='password'
+                            type='password'
+                            placeholder='Enter your password'
+                            className='input-class'
                         />
 
                         <Button type="submit">Submit</Button>
